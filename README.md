@@ -27,7 +27,12 @@ This is a Streamlit-based web application that predicts whether a loan applicant
    venv\Scripts\activate
    ```
 
-2. Install the required packages:
+2. **Navigate to the project directory (where requirements.txt is located):**
+   ```
+   cd path/to/Loan_Prediction
+   ```
+
+3. Install the required packages:
    ```
    pip install -r requirements.txt
    ```
