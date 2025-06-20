@@ -54,6 +54,10 @@ Simply double-click the `run_loan_app.bat` file in the application directory.
    ```
    streamlit run streamlit_app.py
    ```
+### Method 3: go to swiftcapitalcda.streamlit.app
+1. If the app is asleep as stated when accessing the website, click the "Yes, get this app back up!"
+2. Wait for it to load and the website will load fully.
+
 
 ## Usage
 
