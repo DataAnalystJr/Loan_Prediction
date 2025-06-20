@@ -18,6 +18,12 @@ This is a Streamlit-based web application that predicts whether a loan applicant
 - Python 3.8 or higher
 - Windows operating system (for the batch file)
 - Internet connection (for first-time package installation)
+- **(Optional)** Microsoft Visual C++ Build Tools (only required if a package needs to be built from source; most users do not need this if using a supported Python version and up-to-date pip)
+
+**Tip:** Before installing requirements, it is recommended to upgrade pip, setuptools, and wheel:
+```
+python -m pip install --upgrade pip setuptools wheel
+```
 
 ## Installation
 
