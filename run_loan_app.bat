@@ -33,6 +33,6 @@ if not exist "venv" (
 
 REM Run the application
 echo Starting Streamlit application...
-streamlit run streamlit_app.py
+streamlit run Loan_Repayment.py
 
 pause 

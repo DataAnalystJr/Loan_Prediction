@@ -79,11 +79,16 @@ with col1:
 
 with col2:
     applicant_income = st.number_input("Enter Applicant Income (Monthly):", 
-                                     min_value=0.0, 
+                                     min_value=5000.0, 
                                      value=None,
                                      help="Enter your monthly income before any deductions")
-    loan_amount = st.number_input("Enter Loan Amount:", min_value=0.0, value=None)
-    loan_term = st.number_input("Enter Monthly Loan Term:", min_value=0.0, value=None)
+    if applicant_income is not None and applicant_income != 0:
+        st.markdown(f"<span style='color: #2C3E50;'>Formatted: <b>{int(applicant_income):,}</b></span>", unsafe_allow_html=True)
+
+    loan_amount = st.number_input("Enter Loan Amount:", min_value=50000.0, max_value=500000.0, value=None, help="Enter loan amount (maximum: ₱500,000)")
+    if loan_amount is not None and loan_amount != 0:
+        st.markdown(f"<span style='color: #2C3E50;'>Formatted: <b>{int(loan_amount):,}</b></span>", unsafe_allow_html=True)
+    loan_term = st.slider("Select Monthly Loan Term (Months):", min_value=1, max_value=120, value=12, help="Select the loan term in months (1-120)")
     credit_history = st.selectbox("Select Credit History:", options=[""] + list(credit_history_options.keys()), index=0)
     property_area = st.selectbox("Select Property Area:", options=[""] + list(property_area_options.keys()), index=0)
 
@@ -151,8 +156,8 @@ with col1:
         st.write(f"Number of Dependents: {dependents}")
         st.write(f"Education: {education}")
         st.write(f"Self Employed: {self_employed}")
-        st.write(f"Applicant Income: {applicant_income}")
-        st.write(f"Loan Amount: {loan_amount}")
+        st.write(f"Applicant Income: ₱{int(applicant_income):,}")
+        st.write(f"Loan Amount: {int(loan_amount):,}")
         st.write(f"Monthly Loan Term: {loan_term}")
         st.write(f"Credit History: {credit_history}")
         st.write(f"Property Area: {property_area}")
@@ -169,6 +174,20 @@ with col1:
             else:
                 st.write(f"The applicant is unlikely to pay the loan. (Probability: {1 - probability:.2f})")
 
+            st.info("""
+            **Why this result?**  
+            This prediction is based on the applicant's income, loan amount, number of dependents, and credit history, as these are key factors used by the model to assess loan repayment likelihood.
+            """)
+
+            # Add dynamic explanation for the output percentages
+            yes_percent = probability * 100
+            no_percent = (1 - probability) * 100
+            st.markdown(f"""
+            <span style='color:#2C3E50;'>
+            <b>What do these percentages mean?</b><br>
+            The model estimates there is a <b>{yes_percent:.0f}%</b> chance the applicant will repay the loan, and a <b>{no_percent:.0f}%</b> chance they will not.
+            </span>
+            """, unsafe_allow_html=True)
 
             # Visualization with minimalist aesthetic
             plt.style.use('seaborn-v0_8-whitegrid')
