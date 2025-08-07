@@ -25,6 +25,7 @@ This is a Streamlit-based web application that predicts whether a loan applicant
 python -m pip install --upgrade pip setuptools wheel
 ```
 
+
 ## Installation
 
 1. Create a virtual environment (recommended):
